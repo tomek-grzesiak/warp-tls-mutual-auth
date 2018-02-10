@@ -27,8 +27,6 @@ import           Network.Wai.Handler.WarpTLS (TLSSettings, certFile,
                                               defaultTlsSettings, keyFile,
                                               runTLS, tlsServerHooks,
                                               tlsWantClientCert)
-import           Control.Monad.Trans.Maybe
-import           Control.Monad.IO.Class
 import           Control.Applicative
 
 application _ respond = respond $
