@@ -4,17 +4,20 @@
 
 module Main where
 
+import           Control.Applicative
 import           Data.ASN1.Types.String      (asn1CharacterToString)
 import           Data.ByteString             as BS hiding (elem)
 import           Data.Default.Class          (def)
 import           Data.List                   (head)
 import           Data.Maybe
-import           Data.X509                   (CertificateChain (..),
-                                              DnElement (..),
+import           Data.X509                   (Certificate,
+                                              CertificateChain (..),
+                                              DistinguishedName, DnElement (..),
                                               HashALG (HashSHA256),
                                               certSubjectDN, getCertificate,
-                                              getDnElement, DistinguishedName, Certificate)
-import           Data.X509.CertificateStore  (readCertificateStore, findCertificate, CertificateStore)
+                                              getDnElement)
+import           Data.X509.CertificateStore  (CertificateStore, findCertificate,
+                                              readCertificateStore)
 import           Data.X509.Validation        (FailedReason (..), checkLeafV3,
                                               defaultChecks, validate)
 import           Network.HTTP.Types          (status200)
@@ -27,7 +30,6 @@ import           Network.Wai.Handler.WarpTLS (TLSSettings, certFile,
                                               defaultTlsSettings, keyFile,
                                               runTLS, tlsServerHooks,
                                               tlsWantClientCert)
-import           Control.Applicative
 
 application _ respond = respond $
   responseLBS status200 [("Content-Type", "text/plain")] "Hello World"
@@ -40,7 +42,7 @@ myTlsSettings = defaultTlsSettings {
   , keyFile = "../certs/server.key"
   , tlsWantClientCert = True
   , tlsServerHooks = myDefaultServerHooks
-  }
+}
 
 openCertStore = readCertificateStore $ certFile myTlsSettings
 
