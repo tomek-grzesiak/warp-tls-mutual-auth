@@ -1,0 +1,97 @@
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 3e9cfff84b89d93025fe4f681dbab5de095a787a15dee7485bb0d310eb4d5358
+
+name:           haskell-demo
+version:        0.1.0.0
+description:    Please see the README on Github at <https://github.com/githubuser/haskell-demo#readme>
+homepage:       https://github.com/githubuser/haskell-demo#readme
+bug-reports:    https://github.com/githubuser/haskell-demo/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2018 Author name here
+license:        BSD3
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/haskell-demo
+
+library
+  hs-source-dirs:
+      src
+  build-depends:
+      asn1-types
+    , base >=4.7 && <5
+    , bytestring
+    , data-default-class
+    , http-types
+    , tls
+    , transformers
+    , wai
+    , warp
+    , warp-tls
+    , x509
+    , x509-store
+    , x509-system
+    , x509-validation
+  other-modules:
+      Paths_haskell_demo
+  default-language: Haskell2010
+
+executable haskell-demo-exe
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      asn1-types
+    , base >=4.7 && <5
+    , bytestring
+    , data-default-class
+    , haskell-demo
+    , http-types
+    , tls
+    , transformers
+    , wai
+    , warp
+    , warp-tls
+    , x509
+    , x509-store
+    , x509-system
+    , x509-validation
+  other-modules:
+      Paths_haskell_demo
+  default-language: Haskell2010
+
+test-suite haskell-demo-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      asn1-types
+    , base >=4.7 && <5
+    , bytestring
+    , data-default-class
+    , haskell-demo
+    , http-types
+    , tls
+    , transformers
+    , wai
+    , warp
+    , warp-tls
+    , x509
+    , x509-store
+    , x509-system
+    , x509-validation
+  other-modules:
+      Paths_haskell_demo
+  default-language: Haskell2010
