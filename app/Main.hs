@@ -57,10 +57,10 @@ onClientCertificateHook certChain = do
                             store <- openCertStore
                             let validationResult = liftA3 validateCert store (clientCN certChain) (Just certChain)
                             let findInTrustStore = store >>= findCert (clientDistinguishedName certChain)
-                            res <- fromJust validationResult
                             getResult validationResult findInTrustStore
                               where getResult (Just x) (Just _) = x
-                                    getResult _ Nothing =  return (CertificateUsageReject $ CertificateRejectOther "certificate validation")
+                                    getResult _ Nothing =  return (CertificateUsageReject $ CertificateRejectOther "certificate unknow")
+                                    getResult Nothing _ =  return (CertificateUsageReject $ CertificateRejectOther "certificate validation")
 
 myDefaultChecks = defaultChecks {
     checkLeafV3 = False

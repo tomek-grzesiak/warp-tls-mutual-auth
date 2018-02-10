@@ -33,7 +33,6 @@ dependencies:
 - x509-system
 - x509
 - asn1-types
-- transformers
 
 library:
   source-dirs: src
